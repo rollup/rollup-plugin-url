@@ -40,8 +40,8 @@ export default function url(options = {}) {
           data = isSVG
             ? encodeSVG(buffer)
             : buffer.toString("base64")
-          const encoding = isSVG ? "charset=US-ASCII" : "base64"
-          data = `data:${mimetype};${encoding},${data}`
+          const encoding = isSVG ? "" : ";base64"
+          data = `data:${mimetype}${encoding},${data}`
         }
         return `export default "${data}"`
       })

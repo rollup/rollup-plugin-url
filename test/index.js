@@ -8,7 +8,7 @@ const dest = "output/output.js"
 
 process.chdir( __dirname );
 
-const svghash = "f7c8f4125f9925f7.svg"
+const svghash = "98ea1a8cc8cd9baf.svg"
 const pnghash = "6b71fbe07b498a82.png"
 
 describe("rollup-plugin-url", () => {
@@ -16,7 +16,7 @@ describe("rollup-plugin-url", () => {
   it("should inline text files", () => {
     return run("./fixtures/svg.js", 10 * 1024)
     .then(() => Promise.all([
-      assertOutput(`var svg = "data:image/svg+xml;charset=US-ASCII,%3Csvg%3E%3C%2Fsvg%3E"\n\nexport default svg;`),
+      assertOutput(`var svg = "data:image/svg+xml,%3Csvg%3E%3Cpath%20d%3D%22%22%2F%3E%3C%2Fsvg%3E"\n\nexport default svg;`),
       assertExists(`output/${svghash}`, false),
     ]))
   })
