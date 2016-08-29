@@ -12,7 +12,12 @@ const defaultInclude = [
 ]
 
 export default function url(options = {}) {
-  const {limit, include = defaultInclude, exclude} = options
+  const {
+    limit,
+    include = defaultInclude,
+    exclude,
+    publicPath = '',
+  } = options
   const filter = createFilter(include, exclude)
 
   const copies = Object.create(null)
@@ -28,12 +33,13 @@ export default function url(options = {}) {
       ]).then(([stats, buffer]) => {
         let data
         if (limit && stats.size > limit) {
-          data = crypto.createHash("sha1")
+          const hash = crypto.createHash("sha1")
             .update(buffer)
             .digest("hex")
             .substr(0, 16)
-          data += path.extname(id)
-          copies[id] = data
+          const filename = hash + path.extname(id)
+          data = `${publicPath}${filename}`;
+          copies[id] = filename
         } else {
           const mimetype = mime.lookup(id)
           const isSVG = mimetype === "image/svg+xml"
