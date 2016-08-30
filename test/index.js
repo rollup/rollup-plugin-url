@@ -41,6 +41,12 @@ describe("rollup-plugin-url", () => {
       assertExists(`output/${pnghash}`),
     ]))
   })
+  it("should use publicPath", () => {
+    return run("./fixtures/png.js", 10, '/foo/bar/')
+    .then(() => Promise.all([
+      assertOutput(`var png = "/foo/bar/${pnghash}"\n\nexport default png;`),
+    ]))
+  })
 })
 
 function promise(fn, ...args) {
@@ -49,8 +55,8 @@ function promise(fn, ...args) {
                         err ? reject(err) : resolve(res)))
 }
 
-function run(entry, limit) {
-  const plugin = url({limit})
+function run(entry, limit, publicPath = '') {
+  const plugin = url({limit, publicPath})
   return rollup.rollup({
     entry,
     plugins: [plugin],
