@@ -16,7 +16,7 @@ export default function url(options = {}) {
     limit,
     include = defaultInclude,
     exclude,
-    publicPath = '',
+    publicPath = "",
   } = options
   const filter = createFilter(include, exclude)
 
@@ -29,7 +29,7 @@ export default function url(options = {}) {
       }
       return Promise.all([
         promise(fs.stat, id),
-        promise(fs.readFile, id)
+        promise(fs.readFile, id),
       ]).then(([stats, buffer]) => {
         let data
         if (limit && stats.size > limit) {
@@ -38,7 +38,7 @@ export default function url(options = {}) {
             .digest("hex")
             .substr(0, 16)
           const filename = hash + path.extname(id)
-          data = `${publicPath}${filename}`;
+          data = `${publicPath}${filename}`
           copies[id] = filename
         } else {
           const mimetype = mime.lookup(id)
@@ -56,7 +56,7 @@ export default function url(options = {}) {
       const base = path.dirname(options.dest)
       return Promise.all(Object.keys(copies).map(name => {
         const output = copies[name]
-        return copy(name, path.join(base,output))
+        return copy(name, path.join(base, output))
       }))
     },
   }
@@ -72,23 +72,23 @@ function copy(src, dest) {
   return new Promise((resolve, reject) => {
     const read = fs.createReadStream(src)
     read.on("error", reject)
-    var write = fs.createWriteStream(dest)
+    const write = fs.createWriteStream(dest)
     write.on("error", reject)
     write.on("finish", resolve)
     read.pipe(write)
-  });
+  })
 }
 
 // https://github.com/filamentgroup/directory-encoder/blob/master/lib/svg-uri-encoder.js
 function encodeSVG(buffer) {
-  return encodeURIComponent(buffer.toString('utf-8')
-    //strip newlines and tabs
+  return encodeURIComponent(buffer.toString("utf-8")
+    // strip newlines and tabs
     .replace(/[\n\r]/gmi, "")
     .replace(/\t/gmi, " ")
-    //strip comments
-    .replace(/<\!\-\-(.*(?=\-\->))\-\->/gmi, "")
-    //replace
+    // strip comments
+    .replace(/<!\-\-(.*(?=\-\->))\-\->/gmi, "")
+    // replace
     .replace(/'/gmi, "\\i"))
-    //encode brackets
+    // encode brackets
     .replace(/\(/g, "%28").replace(/\)/g, "%29")
 }

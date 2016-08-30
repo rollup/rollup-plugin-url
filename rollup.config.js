@@ -1,4 +1,4 @@
-import babel from "rollup-plugin-babel";
+import babel from "rollup-plugin-babel"
 
 const external = [
   "rollup-pluginutils",
@@ -6,7 +6,7 @@ const external = [
   "crypto",
   "path",
   "fs",
-];
+]
 
 export default {
   entry: "src/index.js",
@@ -17,4 +17,4 @@ export default {
   })],
   format: "cjs",
   dest: "dist/index.js",
-};
+}
