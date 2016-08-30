@@ -45,6 +45,13 @@ Optional. Type: a minimatch pattern, or array of minimatch patterns
 These patterns determine which files are inlined. Defaults to .svg, .png, .jpg
 and .gif files.
 
+### publicPath
+
+Optional. Type: `string`
+
+The `publicPath` will be added in front of file names when they are not inlined
+but copied.
+
 # License
 
 LGPL-3.0
