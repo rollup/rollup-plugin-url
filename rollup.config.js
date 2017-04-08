@@ -11,10 +11,19 @@ const external = [
 export default {
   entry: "src/index.js",
   external,
-  plugins: [babel({
-    babelrc: false,
-    presets: ["es2015-rollup"],
-  })],
+  plugins: [
+    babel({
+      babelrc: false,
+      "presets": [
+        [
+          "es2015",
+          {
+            "modules": false
+          }
+        ]
+      ],
+    })
+  ],
   format: "cjs",
   dest: "dist/index.js",
 }
