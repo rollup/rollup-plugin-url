@@ -1,7 +1,7 @@
 import assert from "assert"
 import fs from "fs"
 import rimraf from "rimraf"
-import rollup from "rollup"
+import { rollup } from "rollup"
 import url from "../"
 
 const dest = "output/output.js"
@@ -52,12 +52,12 @@ function promise(fn, ...args) {
 
 function run(entry, limit, publicPath = "") {
   const plugin = url({limit, publicPath})
-  return rollup.rollup({
+  return rollup({
     entry,
     plugins: [plugin],
   }).then(bundle => bundle.write({
     dest,
-  })).then(() => plugin.write({dest}))
+  }))
 }
 
 function assertOutput(content) {

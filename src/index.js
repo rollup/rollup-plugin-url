@@ -52,13 +52,13 @@ export default function url(options = {}) {
         return `export default "${data}"`
       })
     },
-    write(options) {
+    onwrite: function write(options) {
       const base = path.dirname(options.dest)
       return Promise.all(Object.keys(copies).map(name => {
         const output = copies[name]
         return copy(name, path.join(base, output))
       }))
-    },
+    }
   }
 }
 
