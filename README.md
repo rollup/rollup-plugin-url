@@ -25,7 +25,6 @@ rollup({
   plugins: [plugin],
 })
 .then(bundle => bundle.write(writeoptions))
-.then(() => plugin.write(writeoptions))
 ```
 
 ## Options
