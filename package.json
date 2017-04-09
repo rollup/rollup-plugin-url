@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-url",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Inline import files as data-URIs, or copy them to output",
   "main": "dist/index.js",
   "jsnext:main": "src/index.js",
