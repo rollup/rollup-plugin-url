@@ -35,9 +35,9 @@ Optional. Type: `number`.
 
 This is the file size limit to inline files. If files exceed this limit, they
 will be copied instead to the destination folder and the hashed filename will
-be given instead.
+be given instead. If value set to `0` all files will be copied.
   
-Defaults to 14336 (14kb)
+Defaults to 14336 (14kb).
 
 ### include / exclude
 
