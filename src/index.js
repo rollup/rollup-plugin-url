@@ -13,7 +13,7 @@ const defaultInclude = [
 
 export default function url(options = {}) {
   const {
-    limit,
+    limit = 14 * 1024,
     include = defaultInclude,
     exclude,
     publicPath = "",
@@ -32,7 +32,7 @@ export default function url(options = {}) {
         promise(fs.readFile, id),
       ]).then(([stats, buffer]) => {
         let data
-        if (limit && stats.size > limit) {
+        if ((limit && stats.size > limit) || limit === 0) {
           const hash = crypto.createHash("sha1")
             .update(buffer)
             .digest("hex")

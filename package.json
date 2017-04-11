@@ -35,6 +35,9 @@
     "copy"
   ],
   "author": "Arpad Borsos <arpad.borsos@googlemail.com>",
+  "maintainers": [
+    "Poluektov Dmitriy <dmitry.a@kr.digital>"
+  ],
   "license": "LGPL-3.0",
   "bugs": {
     "url": "https://github.com/Swatinem/rollup-plugin-url/issues"

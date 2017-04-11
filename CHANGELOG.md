@@ -1,7 +1,13 @@
 # Changelog
 
+1.1.0 / 2017-04-12
+==================
+
+ * set default limit to 14kb
+
 1.0.0 / 2017-04-10
 ==================
+
  * Migrate to newer rollup API (#5).
  * Minimal `rollup` version is `0.32.4`
  * Braking: `write` method was removed

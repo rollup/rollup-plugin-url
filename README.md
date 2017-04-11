@@ -31,11 +31,13 @@ rollup({
 
 ### limit
 
-Optional. Type: `number`
+Optional. Type: `number`. 
 
 This is the file size limit to inline files. If files exceed this limit, they
 will be copied instead to the destination folder and the hashed filename will
 be given instead.
+  
+Defaults to 14336 (14kb)
 
 ### include / exclude
 
