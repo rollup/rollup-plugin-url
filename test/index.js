@@ -24,6 +24,16 @@ describe("rollup-plugin-url", () => {
       )
   )
 
+  it("should not copy files when limit is 0 and emitFiles is off", () =>
+    run("./fixtures/svg.js", 0, "", false)
+      .then(
+        () => Promise.all([
+          assertOutput(`var svg = "${svghash}"\n\nexport default svg;`),
+          assertExists(`output/${svghash}`, false),
+        ])
+      )
+  )
+
   it("should copy files when limit is 0", () =>
     run("./fixtures/svg.js", 0)
       .then(
@@ -80,8 +90,8 @@ function promise(fn, ...args) {
       err ? reject(err) : resolve(res)))
 }
 
-function run(entry, limit, publicPath = "") {
-  const plugin = url({limit, publicPath})
+function run(entry, limit, publicPath = "", emitFiles = true) {
+  const plugin = url({limit, publicPath, emitFiles})
   return rollup({
     entry,
     plugins: [plugin],

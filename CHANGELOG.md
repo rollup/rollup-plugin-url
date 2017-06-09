@@ -1,5 +1,10 @@
 # Changelog
 
+1.2.0 / 2017-06-09
+==================
+
+ * add ability to prevent emitting any files with the `emitFiles=false` option.
+
 1.1.0 / 2017-04-12
 ==================
 

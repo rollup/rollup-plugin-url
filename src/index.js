@@ -17,6 +17,7 @@ export default function url(options = {}) {
     include = defaultInclude,
     exclude,
     publicPath = "",
+    emitFiles = true
   } = options
   const filter = createFilter(include, exclude)
 
@@ -53,6 +54,9 @@ export default function url(options = {}) {
       })
     },
     onwrite: function write(options) {
+      // Allow skipping saving files for server side builds.
+      if (!emitFiles) return
+
       const base = path.dirname(options.dest)
       return Promise.all(Object.keys(copies).map(name => {
         const output = copies[name]
