@@ -53,6 +53,17 @@ export default function url(options = {}) {
         return `export default "${data}"`
       })
     },
+    transform(source, id) {
+      Object.keys(copies)
+        .map(name => {
+          return copies[name];
+        })
+        .map((name) => {
+          source = source.replace(new RegExp(`"${name}"`, 'g'), `require('./${name}')`);
+          return name;
+        });
+      return source;
+    },
     onwrite: function write(options) {
       // Allow skipping saving files for server side builds.
       if (!emitFiles) return
