@@ -18,7 +18,7 @@ describe("rollup-plugin-url", () => {
     run("./fixtures/svg.js", 10 * 1024)
       .then(
         () => Promise.all([
-          assertOutput(`var svg = "data:image/svg+xml,%3Csvg%3E%3Cpath%20d%3D%22%22%2F%3E%3C%2Fsvg%3E"\n\nexport default svg;`),
+          assertOutput(`var svg$1 = "data:image/svg+xml,%3Csvg%3E%3Cpath%20d%3D%22%22%2F%3E%3C%2Fsvg%3E";\nexport default svg$1;`),
           assertExists(`output/${svghash}`, false),
         ])
       )
@@ -28,7 +28,7 @@ describe("rollup-plugin-url", () => {
     run("./fixtures/svg.js", 0, "", false)
       .then(
         () => Promise.all([
-          assertOutput(`var svg = "${svghash}"\n\nexport default svg;`),
+          assertOutput(`var svg$1 = "${svghash}";\nexport default svg$1;`),
           assertExists(`output/${svghash}`, false),
         ])
       )
@@ -38,7 +38,7 @@ describe("rollup-plugin-url", () => {
     run("./fixtures/svg.js", 0)
       .then(
         () => Promise.all([
-          assertOutput(`var svg = "${svghash}"\n\nexport default svg;`),
+          assertOutput(`var svg$1 = "${svghash}";\nexport default svg$1;`),
           assertExists(`output/${svghash}`),
         ])
       )
@@ -48,7 +48,7 @@ describe("rollup-plugin-url", () => {
     run("./fixtures/png.js", 10 * 1024)
       .then(
         () => Promise.all([
-          assertOutput(`var png = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQVR4nGP6DwABBQECz6AuzQAAAABJRU5ErkJggg=="\n\nexport default png;`),
+          assertOutput(`var png$1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQVR4nGP6DwABBQECz6AuzQAAAABJRU5ErkJggg==";\nexport default png$1;`),
           assertExists(`output/${pnghash}`, false),
         ])
       )
@@ -58,7 +58,7 @@ describe("rollup-plugin-url", () => {
     run("./fixtures/svg.js", 10)
       .then(
         () => Promise.all([
-          assertOutput(`var svg = "${svghash}"\n\nexport default svg;`),
+          assertOutput(`var svg$1 = "${svghash}";\nexport default svg$1;`),
           assertExists(`output/${svghash}`),
         ])
       )
@@ -68,7 +68,7 @@ describe("rollup-plugin-url", () => {
     run("./fixtures/png.js", 10)
       .then(
         () => Promise.all([
-          assertOutput(`var png = "${pnghash}"\n\nexport default png;`),
+          assertOutput(`var png$1 = "${pnghash}";\nexport default png$1;`),
           assertExists(`output/${pnghash}`),
         ])
       )
@@ -78,7 +78,7 @@ describe("rollup-plugin-url", () => {
     run("./fixtures/png.js", 10, "/foo/bar/")
       .then(
         () => Promise.all([
-          assertOutput(`var png = "/foo/bar/${pnghash}"\n\nexport default png;`),
+          assertOutput(`var png$1 = "/foo/bar/${pnghash}";\nexport default png$1;`),
         ])
       )
   )
@@ -90,19 +90,20 @@ function promise(fn, ...args) {
       err ? reject(err) : resolve(res)))
 }
 
-function run(entry, limit, publicPath = "", emitFiles = true) {
+function run(input, limit, publicPath = "", emitFiles = true) {
   const plugin = url({limit, publicPath, emitFiles})
   return rollup({
-    entry,
+    input,
     plugins: [plugin],
   }).then(bundle => bundle.write({
-    dest,
+    file: dest,
+    format: 'es'
   }))
 }
 
 function assertOutput(content) {
   return promise(fs.readFile, dest, "utf-8")
-    .then(fileContent => assert.equal(fileContent, content))
+    .then(fileContent => assert.equal(fileContent.replace(/[\W]/gi, ''), content.replace(/[\W]/gi, '')))
 }
 
 function assertExists(name, shouldExist = true) {

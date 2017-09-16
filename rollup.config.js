@@ -9,7 +9,7 @@ const external = [
 ]
 
 export default {
-  entry: "src/index.js",
+  input: "src/index.js",
   external,
   plugins: [
     babel({
@@ -24,6 +24,8 @@ export default {
       ],
     })
   ],
-  format: "cjs",
-  dest: "dist/index.js",
+  output: {
+    format: "cjs",
+    file: "dist/index.js",
+  },
 }

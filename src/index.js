@@ -57,7 +57,7 @@ export default function url(options = {}) {
       // Allow skipping saving files for server side builds.
       if (!emitFiles) return
 
-      const base = path.dirname(options.dest)
+      const base = path.dirname(options.file)
       return Promise.all(Object.keys(copies).map(name => {
         const output = copies[name]
         return copy(name, path.join(base, output))

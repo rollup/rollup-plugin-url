@@ -14,8 +14,8 @@
     "babel-register": "^6.4.3",
     "mocha": "^2.4.5",
     "rimraf": "^2.5.1",
-    "rollup": "^0.32.4",
-    "rollup-plugin-babel": "^2.3.9"
+    "rollup": "^0.50.0",
+    "rollup-plugin-babel": "^3.0.2"
   },
   "scripts": {
     "test": "mocha --compilers js:babel-register",
@@ -48,6 +48,6 @@
     "rollup-pluginutils": "^2.0.1"
   },
   "peerDependencies": {
-    "rollup": ">=0.32.4"
+    "rollup": ">=0.50.0"
   }
 }
