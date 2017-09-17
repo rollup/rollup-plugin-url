@@ -1,5 +1,9 @@
 # Changelog
 
+1.3.0 / 2017-09-17
+==================
+ * internal update: it builds now with rollup@0.50 
+
 1.2.0 / 2017-06-09
 ==================
 
