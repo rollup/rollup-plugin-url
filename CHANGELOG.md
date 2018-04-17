@@ -1,5 +1,10 @@
 # Changelog
 
+1.4.0 / 2018-04-17
+==================
+ * add support for `output.dir` option
+ * update dependencies
+
 1.3.0 / 2017-09-17
 ==================
  * internal update: it builds now with rollup@0.50 
