@@ -42,7 +42,7 @@ export default function url(options = {}) {
           data = `${publicPath}${filename}`
           copies[id] = filename
         } else {
-          const mimetype = mime.lookup(id)
+          const mimetype = mime.getType(id)
           const isSVG = mimetype === "image/svg+xml"
           data = isSVG
             ? encodeSVG(buffer)
@@ -57,7 +57,7 @@ export default function url(options = {}) {
       // Allow skipping saving files for server side builds.
       if (!emitFiles) return
 
-      const base = path.dirname(options.file)
+      const base = options.dir || path.dirname(options.file)
       return Promise.all(Object.keys(copies).map(name => {
         const output = copies[name]
         return copy(name, path.join(base, output))
