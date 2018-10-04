@@ -13,15 +13,7 @@ export default {
   external,
   plugins: [
     babel({
-      babelrc: false,
-      "presets": [
-        [
-          "es2015",
-          {
-            "modules": false
-          }
-        ]
-      ],
+      babelrc: true
     })
   ],
   output: {
