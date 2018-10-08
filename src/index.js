@@ -53,7 +53,7 @@ export default function url(options = {}) {
         return `export default "${data}"`
       })
     },
-    generateBundle: function write(options) {
+    onwrite: function write(options) {
       // Allow skipping saving files for server side builds.
       if (!emitFiles) return
 
