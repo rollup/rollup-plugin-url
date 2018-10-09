@@ -1,5 +1,9 @@
 # Changelog
 
+2.0.1 / 2018-10-09
+==================
+* ensure destination folder exist while `generateBundle` hook performs
+
 2.0.0 / 2018-10-01
 ==================
 * **Breaking:** version 2.0.0 requires rollup@0.60 and higher – deprecated `onwrite` hook replaced with new `generateBundle` hook, so plugin will not work with earlier versions of rollup.  
