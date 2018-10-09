@@ -3,6 +3,7 @@ import mime from "mime"
 import crypto from "crypto"
 import path from "path"
 import fs from "fs"
+import mkpath from "mkpath"
 
 const defaultInclude = [
   "**/*.svg",
@@ -53,11 +54,14 @@ export default function url(options = {}) {
         return `export default "${data}"`
       })
     },
-    generateBundle: function write(options) {
+    generateBundle: async function write(options) {
       // Allow skipping saving files for server side builds.
       if (!emitFiles) return
 
       const base = options.dir || path.dirname(options.file)
+
+      await promise(mkpath, base)
+
       return Promise.all(Object.keys(copies).map(name => {
         const output = copies[name]
         return copy(name, path.join(base, output))
