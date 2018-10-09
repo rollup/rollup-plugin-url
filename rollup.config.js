@@ -6,6 +6,7 @@ const external = [
   "crypto",
   "path",
   "fs",
+  "mkpath"
 ]
 
 export default {

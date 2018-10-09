@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-url",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Inline import files as data-URIs, or copy them to output",
   "main": "dist/index.js",
   "jsnext:main": "src/index.js",
@@ -46,6 +46,7 @@
   "homepage": "https://github.com/Swatinem/rollup-plugin-url#readme",
   "dependencies": {
     "mime": "^2.3.1",
+    "mkpath": "^1.0.0",
     "rollup-pluginutils": "^2.3.3"
   },
   "peerDependencies": {
