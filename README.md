@@ -60,6 +60,38 @@ Optional. Type: `boolean`
 
 The `emitFiles` option is used to run the plugin as you normally would but prevents any files being emitted. This is useful for when you are using rollup to emit both a client side and server side bundle.
 
+### fileName
+
+Optional. Type: `string`
+
+When `emitFiles` is `true`, the `fileName` option can be used to rename the emitted files. It accepts the following string replacements:
+
+- `[hash]` - The hash value of the file's contents
+- `[name]` - The name of the imported file, without it's file extension
+- `[extname]` - The extension of the imported file, including the leading `.`
+- `[dirname]` - The parent directory name of the imported file, including trailing `/`
+
+Defaults to: `"[hash][extname]"`
+
+### sourceDir
+
+Optional. Type: `string`
+
+When using the `[dirname]` replacement in `fileName`, uses this directory as the source directory to create the file path from rather than the parent directory of the imported file. For example:
+
+*src/path/to/file.js*
+```js
+import png from "./image.png";
+```
+*rollup.config.js*
+```js
+url({
+  fileName: "[dirname][hash][extname]",
+  sourceDir: path.join(__dirname, "src")
+})
+```
+Emitted File: `path/to/image.png`
+
 # License
 
 LGPL-3.0
