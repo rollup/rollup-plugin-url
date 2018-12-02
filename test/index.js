@@ -1,5 +1,6 @@
 import assert from "assert"
 import fs from "fs"
+import path from "path"
 import rimraf from "rimraf"
 import {rollup} from "rollup"
 import url from "../"
@@ -11,6 +12,7 @@ process.chdir(__dirname)
 
 const svghash = "98ea1a8cc8cd9baf.svg"
 const pnghash = "6b71fbe07b498a82.png"
+const pngname = "png.png"
 
 const asserts = {
   svgInline: `var svg = "data:image/svg+xml,%3Csvg%3E%3Cpath%20d%3D%22%22%2F%3E%3C%2Fsvg%3E";\nexport default svg;`,
@@ -87,6 +89,51 @@ describe("rollup-plugin-url", () => {
       .then(
         () => Promise.all([
           assertOutput(`var png = "/foo/bar/${pnghash}";\nexport default png;`),
+        ])
+      )
+  )
+
+  it("should create a nested directory for the output, if required", () =>
+    run("./fixtures/png.js", { limit: 10, fileName: "subdirectory/[hash][extname]" })
+      .then(
+        () => Promise.all([
+          assertExists(`output/subdirectory/${pnghash}`)
+        ])
+      )
+  )
+
+  it("should create a file with the name and extension of the file", () =>
+    run("./fixtures/png.js", { limit: 10, fileName: "[name][extname]" })
+      .then(
+        () => Promise.all([
+          assertExists(`output/${pngname}`)
+        ])
+      )
+  )
+
+  it("should create a file with the name, hash and extension of the file", () =>
+    run("./fixtures/png.js", { limit: 10, fileName: "[name]-[hash][extname]" })
+      .then(
+        () => Promise.all([
+          assertExists(`output/png-${pnghash}`)
+        ])
+      )
+  )
+
+  it("should prefix the file with the parent directory of the source file", () =>
+    run("./fixtures/png.js", { limit: 10, fileName: "[dirname][hash][extname]" })
+      .then(
+        () => Promise.all([
+          assertExists(`output/fixtures/${pnghash}`)
+        ])
+      )
+  )
+
+  it("should prefix the file with the parent directory of the source file, relative to the sourceDir option", () =>
+    run("./fixtures/png.js", { limit: 10, fileName: "[dirname][hash][extname]", sourceDir: path.join(__dirname, "../") })
+      .then(
+        () => Promise.all([
+          assertExists(`output/test/fixtures/${pnghash}`)
         ])
       )
   )

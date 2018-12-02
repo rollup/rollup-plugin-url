@@ -18,7 +18,8 @@ export default function url(options = {}) {
     include = defaultInclude,
     exclude,
     publicPath = "",
-    emitFiles = true
+    emitFiles = true,
+    fileName = "[hash][extname]"
   } = options
   const filter = createFilter(include, exclude)
 
@@ -39,9 +40,24 @@ export default function url(options = {}) {
             .update(buffer)
             .digest("hex")
             .substr(0, 16)
-          const filename = hash + path.extname(id)
-          data = `${publicPath}${filename}`
-          copies[id] = filename
+          const ext = path.extname(id)
+          const name = path.basename(id, ext)
+          // Determine the directory name of the file based
+          // on either the relative path provided in options,
+          // or the parent directory
+          const relativeDir = options.sourceDir
+            ? path.relative(options.sourceDir, path.dirname(id))
+            : path.dirname(id).split(path.sep).pop()
+          
+          // Generate the output file name based on some string
+          // replacement parameters
+          const outputFileName = fileName
+            .replace(/\[hash\]/g, hash)
+            .replace(/\[extname\]/g, ext)
+            .replace(/\[dirname\]/g, `${relativeDir}${path.sep}`)
+            .replace(/\[name\]/g, name)
+          data = `${publicPath}${outputFileName}`
+          copies[id] = outputFileName
         } else {
           const mimetype = mime.getType(id)
           const isSVG = mimetype === "image/svg+xml"
@@ -62,8 +78,12 @@ export default function url(options = {}) {
 
       await promise(mkpath, base)
 
-      return Promise.all(Object.keys(copies).map(name => {
+      return Promise.all(Object.keys(copies).map(async name => {
         const output = copies[name]
+        // Create a nested directory if the fileName pattern contains
+        // a directory structure
+        const outputDirectory = path.join(base, path.dirname(output))
+        await promise(mkpath, outputDirectory)
         return copy(name, path.join(base, output))
       }))
     }
