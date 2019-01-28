@@ -138,6 +138,15 @@ describe("rollup-plugin-url", () => {
       )
   )
 
+  it("should copy the file according to destDir option", () =>
+    run("./fixtures/png.js", { limit: 10, fileName: "[dirname][hash][extname]", destDir: path.join(__dirname, "output/dest") })
+      .then(
+        () => Promise.all([
+          assertExists(`output/dest/fixtures/${pnghash}`)
+        ])
+      )
+  )
+
   it("should create multiple modules and inline files", () => {
     return run(["./fixtures/svg.js", "./fixtures/png.js"], {}, true)
       .then(

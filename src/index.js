@@ -70,11 +70,11 @@ export default function url(options = {}) {
         return `export default "${data}"`
       })
     },
-    generateBundle: async function write(options) {
+    generateBundle: async function write(outputOptions) {
       // Allow skipping saving files for server side builds.
       if (!emitFiles) return
 
-      const base = options.dir || path.dirname(options.file)
+      const base = options.destDir || outputOptions.dir || path.dirname(outputOptions.file)
 
       await promise(mkpath, base)
 
