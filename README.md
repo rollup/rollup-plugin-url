@@ -92,6 +92,12 @@ url({
 ```
 Emitted File: `path/to/image.png`
 
+### destDir
+
+Optional. Type: `string`
+
+The destination dir to copy assets, usually used to rebase the assets according to HTML files.
+
 # License
 
 LGPL-3.0
