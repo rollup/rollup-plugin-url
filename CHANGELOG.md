@@ -1,5 +1,10 @@
 # Changelog
 
+2.2.0 / 2019-01-29
+=================
+* add `destDir` option ([#19](https://github.com/rollup/rollup-plugin-url/pull/19))
+* update dependencies
+
 2.1.0 / 2018-12-02
 ==================
 * add `fileName` option ([#17](https://github.com/rollup/rollup-plugin-url/pull/17))
