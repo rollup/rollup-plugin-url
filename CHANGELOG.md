@@ -1,5 +1,9 @@
 # Changelog
 
+2.2.1 / 2019-04-10
+=================
+* Fix `dirname` substitution on Windows ([#21](https://github.com/rollup/rollup-plugin-url/pull/21))
+
 2.2.0 / 2019-01-29
 =================
 * add `destDir` option ([#19](https://github.com/rollup/rollup-plugin-url/pull/19))
