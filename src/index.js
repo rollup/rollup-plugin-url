@@ -54,7 +54,7 @@ export default function url(options = {}) {
           const outputFileName = fileName
             .replace(/\[hash\]/g, hash)
             .replace(/\[extname\]/g, ext)
-            .replace(/\[dirname\]/g, `${relativeDir}${path.sep}`)
+            .replace(/\[dirname\]/g, `${relativeDir}/`)
             .replace(/\[name\]/g, name)
           data = `${publicPath}${outputFileName}`
           copies[id] = outputFileName
