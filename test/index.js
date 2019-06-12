@@ -199,7 +199,6 @@ function run(input, options, experimentalCodeSplitting = false) {
   return rollup({
     input,
     plugins: [url(Object.assign({}, DEFAULT_OPTIONS, options))],
-    experimentalCodeSplitting
   }).then(bundle => bundle.write(writeOptions))
 }
 
