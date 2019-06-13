@@ -50,6 +50,6 @@
     "rollup-pluginutils": "^2.8.1"
   },
   "peerDependencies": {
-    "rollup": ">=1.0.0"
+    "rollup": ">=0.60.0"
   }
 }
