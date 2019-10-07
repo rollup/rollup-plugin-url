@@ -3,7 +3,6 @@ import mime from "mime"
 import crypto from "crypto"
 import path from "path"
 import fs from "fs"
-import mkpath from "mkpath"
 
 const defaultInclude = [
   "**/*.svg",
@@ -48,7 +47,7 @@ export default function url(options = {}) {
           const relativeDir = options.sourceDir
             ? path.relative(options.sourceDir, path.dirname(id))
             : path.dirname(id).split(path.sep).pop()
-          
+
           // Generate the output file name based on some string
           // replacement parameters
           const outputFileName = fileName
@@ -119,4 +118,9 @@ function encodeSVG(buffer) {
     .replace(/'/gmi, "\\i"))
     // encode brackets
     .replace(/\(/g, "%28").replace(/\)/g, "%29")
+}
+
+// use fs.mkdir to instead of mkpath package, see https://github.com/jrajav/mkpath/issues/6
+function mkpath(path, err) {
+  return fs.mkdir(path, { recursive: true }, err);
 }
