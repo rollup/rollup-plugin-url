@@ -1,5 +1,9 @@
 # Changelog
 
+2.2.4 / 2019-10-08
+=================
+* fallback to `mkdirp` to keep working on node <= 8
+
 2.2.3 / 2019-10-08
 =================
 * remove `mkpath` from dependencies ([#24](https://github.com/rollup/rollup-plugin-url/pull/24))
