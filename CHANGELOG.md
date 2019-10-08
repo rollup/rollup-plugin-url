@@ -1,5 +1,10 @@
 # Changelog
 
+2.2.3 / 2019-10-08
+=================
+* remove `mkpath` from dependencies ([#24](https://github.com/rollup/rollup-plugin-url/pull/24))
+* update dev dependencies
+
 2.2.2 / 2019-06-13
 =================
 * dependencies update

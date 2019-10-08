@@ -10,13 +10,13 @@
     "README.md"
   ],
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/register": "^7.4.4",
-    "mocha": "^6.1.4",
-    "rimraf": "^2.6.3",
-    "rollup": "^1.15.2",
-    "rollup-plugin-babel": "^4.3.2"
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/register": "^7.6.2",
+    "mocha": "^6.2.1",
+    "rimraf": "^2.7.1",
+    "rollup": "^1.23.1",
+    "rollup-plugin-babel": "^4.3.3"
   },
   "scripts": {
     "test": "mocha --require @babel/register",
@@ -46,7 +46,7 @@
   "homepage": "https://github.com/Swatinem/rollup-plugin-url#readme",
   "dependencies": {
     "mime": "^2.4.4",
-    "rollup-pluginutils": "^2.8.1"
+    "rollup-pluginutils": "^2.8.2"
   },
   "peerDependencies": {
     "rollup": ">=0.60.0"
