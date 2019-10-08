@@ -46,6 +46,7 @@
   "homepage": "https://github.com/Swatinem/rollup-plugin-url#readme",
   "dependencies": {
     "mime": "^2.4.4",
+    "mkdirp": "^0.5.1",
     "rollup-pluginutils": "^2.8.2"
   },
   "peerDependencies": {

@@ -1,4 +1,5 @@
 import {createFilter} from "rollup-pluginutils"
+import mkdirp from 'mkdirp'
 import mime from "mime"
 import crypto from "crypto"
 import path from "path"
@@ -75,7 +76,7 @@ export default function url(options = {}) {
 
       const base = options.destDir || outputOptions.dir || path.dirname(outputOptions.file)
 
-      await promise(mkpath, base)
+      await promise(mkdirp, base)
 
       return Promise.all(Object.keys(copies).map(async name => {
         const output = copies[name]
