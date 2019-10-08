@@ -1,5 +1,10 @@
 # Changelog
 
+3.0.0 / 2019-10-08
+=================
+* drop node 8 support as it's maintenance will be closed in [December](https://github.com/nodejs/Release#release-schedule)
+* migrate to MIT License 
+
 2.2.4 / 2019-10-08
 =================
 * fallback to `mkdirp` to keep working on node <= 8
