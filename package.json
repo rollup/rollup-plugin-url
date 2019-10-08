@@ -18,6 +18,9 @@
     "rollup": "^1.23.1",
     "rollup-plugin-babel": "^4.3.3"
   },
+  "engines": {
+    "node": ">=10.0.0"
+  },
   "scripts": {
     "test": "mocha --require @babel/register",
     "pretest": "npm run build",
@@ -39,14 +42,13 @@
   "maintainers": [
     "Poluektov Dmitriy <dmitry.a@kr.digital>"
   ],
-  "license": "LGPL-3.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Swatinem/rollup-plugin-url/issues"
   },
   "homepage": "https://github.com/Swatinem/rollup-plugin-url#readme",
   "dependencies": {
     "mime": "^2.4.4",
-    "mkdirp": "^0.5.1",
     "rollup-pluginutils": "^2.8.2"
   },
   "peerDependencies": {
