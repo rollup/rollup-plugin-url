@@ -1,4 +1,5 @@
 import {createFilter} from "rollup-pluginutils"
+import slash from 'slash2'
 import mime from "mime"
 import crypto from "crypto"
 import path from "path"
@@ -55,7 +56,7 @@ export default function url(options = {}) {
             .replace(/\[extname\]/g, ext)
             .replace(/\[dirname\]/g, `${relativeDir}/`)
             .replace(/\[name\]/g, name)
-          data = `${publicPath}${outputFileName}`
+          data = slash(`${publicPath}${outputFileName}`)
           copies[id] = outputFileName
         } else {
           const mimetype = mime.getType(id)
