@@ -1,3 +1,7 @@
+# Moving
+
+This plugin will soon be moving to the new [Rollup plugins](https://github.com/rollup/plugins) monorepo. Please stand by.
+
 # rollup-plugin-url
 
 Inline import files as data-URIs, or copy them to output
