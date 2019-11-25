@@ -1,6 +1,6 @@
-# Moving
+# Moved
 
-This plugin will soon be moving to the new [Rollup plugins](https://github.com/rollup/plugins) monorepo. Please stand by.
+This module has moved and is now available at [@rollup/plugin-url](https://github.com/rollup/plugins). Please update your dependencies. This repository is no longer maintained.
 
 # rollup-plugin-url
 
